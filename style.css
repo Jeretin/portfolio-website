@@ -1,5 +1,7 @@
 :root {
     --color-primary: #E2000F;
+    --color-primary-darker: #6a0007;
+    --color-primary-lighter: #c9121e;
     --color-background: #121212;
     --color-surface: #1E1E1E;
     --color-text: #EAEAEA;
@@ -8,17 +10,20 @@
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-text);
-  font-family: Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2, h3, a {
-  color: var(--color-primary);
+    color: var(--color-primary);
 }
 
+/* Nappien yleinen tyyli */
 button {
-    background: var(--color-primary);
+    background: var(--color-primary-lighter);
     color: var(--color-text-strong);
     border: none;
     padding: 10px 20px;
@@ -27,12 +32,13 @@ button {
     font-weight: bold;
 }
 
-button:hover{
+button:hover {
     background: var(--color-accent);
     color: var(--color-background);
 }
 
-.header-buttons{
+/* Headerin navigaatio */
+.header-buttons {
     display: flex;
     justify-content: space-between;
     max-width: 1000px;
@@ -42,12 +48,10 @@ button:hover{
     background-color: var(--color-surface);
 }
 
-.header-buttons button{
+.header-buttons button {
     flex: 1;
     padding: 15px 0;
     font-size: 1rem;
-    background: var(--color-primary);
-    color: var(--color-text-strong);
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -59,19 +63,20 @@ button:hover{
     color: var(--color-background);
 }
 
-.card{
-    background-color: var(--color-primary);
+/* Yleiset kortit */
+.card {
+    background-color: var(--color-surface);
     color: var(--color-text);
     width: 80%;
     max-width: 600px;
     margin: 40px auto;
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 4px 15ppx rgba(0,0,0,0.5);
+    box-shadow: 0 0px 15px var(--color-primary);
     text-align: center;
 }
 
-.card h2{
+.card h2 {
     color: var(--color-text-strong);
     margin-bottom: 15px;
 }
@@ -80,16 +85,193 @@ button:hover{
     line-height: 1.6;
 }
 
-.header-background{
+/* Otsikko-taustalaatikot */
+.header-background {
     background-color: var(--color-surface);
     width: 80%;
     padding: 20px;
     text-align: center;
     border-radius: 20px;
-    box-shadow: 0 4px 15ppx rgba(0,0,0,0.5);
-    margin: 0 auto;
+    box-shadow: 0 2px 15px #ff0011;
+    margin: 40px auto 20px auto;
 }
 
-.header-background h2{
+.header-background h2 {
     color: var(--color-text-strong);
+    margin: 0;
 }
+
+/* Pelikortti */
+.game-card {
+    width: 80%;
+    max-width: 900px;
+    background: var(--color-surface);
+    border-radius: 14px;
+    box-shadow: 0 2px 15px #ff0011;
+    overflow: hidden;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.game-card h2 {
+    margin-bottom: 15px;
+    color: var(--color-text-strong);
+    text-align: center;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Karuselli */
+.carousel {
+    position: relative;
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column; /* iso media ylhäällä, thumbnailit alla */
+    align-items: center;
+    justify-content: flex-start;
+    height: 360px; /* varaa tilaa iso media + thumbnailit */
+}
+
+/* Nuolinapit kuvan/video reunassa */
+.carousel button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.carousel button:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+.carousel .prev { left: 10px; }
+.carousel .next { right: 10px; }
+
+/* Thumbnailit */
+.thumb-strip {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.thumb-strip img {
+    width: 60px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.thumb-strip img:hover {
+    transform: scale(1.5);
+    object-fit: contain;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    z-index: 5;
+}
+
+/* Uusi kontaineri kahdelle tekstiboxille */
+.game-description-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* päällekkäin */
+  gap: 15px; /* väli boxien välillä */
+}
+
+/* Pelin kuvausteksti */
+.game-description {
+    flex: 1;
+    background: var(--color-primary-darker);
+    color: var(--color-text-strong);
+    padding: 15px;
+    border-radius: 10px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Iso media-säiliö (kuva tai video) */
+#mainMediaContainer {
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    background-color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Kuva ja video täyttävät säiliön */
+#mainMediaContainer img,
+#mainMediaContainer video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* koko sisältö näkyy */
+    border-radius: 10px;
+}
+
+/* Game description container pitää edelleen columnina */
+.game-description-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* päällekkäin ylä- ja alaboxi */
+  gap: 15px; /* väli boxien välillä */
+}
+
+/* Yläboxi, jossa neljä itemiä */
+.game-description.upper-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* kaksi saraketta */
+  grid-template-rows: repeat(2, auto);   /* kaksi riviä */
+  gap: 10px;
+}
+
+.game-description.upper-box .item {
+  background-color: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Alempi boxi normaalisti */
+.game-description.lower-box {
+  color: var(--color-text-strong);
+  padding: 15px;
+  border-radius: 10px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.download-btn {
+    background-color: var(--color-primary-darker);  /* uusi väri */
+    color: #FFFFFF;             /* tekstin väri */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.download-btn:hover {
+    background-color: var(--color-accent);  /* hover-väri */
+}
+
+
+
+
