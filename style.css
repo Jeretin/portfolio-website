@@ -129,7 +129,7 @@ button:hover {
 /* Karuselli */
 .carousel {
     position: relative;
-    flex: 1;
+    flex: 0 0 50%;
     max-width: 50%;
     display: flex;
     flex-direction: column; /* iso media ylhäällä, thumbnailit alla */
@@ -227,7 +227,7 @@ button:hover {
 
 /* Game description container pitää edelleen columnina */
 .game-description-container {
-  flex: 1;
+  flex: 0 0 50%;
   display: flex;
   flex-direction: column; /* päällekkäin ylä- ja alaboxi */
   gap: 15px; /* väli boxien välillä */
