@@ -7,42 +7,45 @@
 </head>
 <body>
     <div class="header-buttons">
-        <button>Home</button>
-        <button>About Me</button>
-        <button>Projects</button>
-        <button>Skills</button>
-        <button>Contact</button>
+        <a href="#about-me">Home</a>
+        <a href="#about-me">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contacts">Contact</a>
     </div>
 
-    <section class="card">
+    <section class="card" id="about-me">
         <h2>About Me</h2>
         <p>
-            Hello. This is a placeholder text describing what kind of person is Jere Pöntynen. Jere Pöntynen likes programming in Unity and making great videogames.
-            On freetime Jere also likes to do sports, watch sports and play sport videogames. Very much sport I guess.
+            I'm 24 years old game programmer from Finland. 
+            From the city of Jyväskylä. On my freetime I like to do many different kind of stuff. I do train for long distance runs like half and full marathons. 
+            I also love many other sports and some sports I do most actively are gym, floorball and bowling. 
+            In addition to sports, I like for example travelling, gaming and visiting museums, hockey games and places like that. 
+            Easier would be to say what I don't like to do and that's actually pretty hard to answer.
         </p>
     </section>
 
-    <div class="header-background">
+    <div class="header-background" id="projects">
         <h2>Projects</h2>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-game="cyberlance">
         <h2>Cyberlance</h2>
         <div class="card-content">
             
             <!-- Karuselli -->
-            <div class="carousel" id="carousel">
-                <button class="prev" id="prevEdge">&#10094;</button>
+            <div class="carousel">
+                <button class="prev">&#10094;</button>
 
                 <!-- Iso media-säiliö (kuva tai video) -->
-                <div id="mainMediaContainer">
+                <div class="mainMediaContainer">
                     <!-- JS täyttää tämän kuvan tai videon mukaan -->
                 </div>
 
-                <button class="next" id="nextEdge">&#10095;</button>
+                <button class="next">&#10095;</button>
 
                 <!-- Thumbnailit (vain kuville) -->
-                <div class="thumb-strip" id="thumbs"></div>
+                <div class="thumb-strip"></div>
             </div>
             
             <!-- Pelin kuvaus -->
@@ -62,30 +65,68 @@
                     </p>
                 </div>
                 <!-- Download button -->
-                <a href="https://example.com/download" target="_blank">
+                <a href="https://leka45km.itch.io/cyberlance" target="_blank">
                     <button class="download-btn">Download</button>
                 </a>
+
+                <div class="game-skills">
+                    <div class="skill">
+                    <img src="images/icons/code.jpg" alt="More complex codebase">
+                    <div class="skill-info"> More complex codebase <br>
+                        Codebase for the project was easily the most complex I have had in my projects.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/unity.png" alt="Unity 6">
+                    <div class="skill-info"> Unity 6 <br>
+                        Game is made in Unity 6. I was already familiar with older Unity versions but this was my first time with Unity 6.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/Cs.png" alt="C#">
+                    <div class="skill-info"> C# <br>
+                        Game is made by C#. I mostly developed my old skills, but also learned still something new like coroutines.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/code.jpg" alt="Use of lists">
+                    <div class="skill-info"> Use of lists <br>
+                        In previous projects it hasn't been so important what kind of lists do I use but now especially with message window it had a big difference.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/problemsolving.png" alt="Problem solving">
+                    <div class="skill-info"> Problem solving <br>
+                        One of the biggest problems were with minigame because I couldn't use linerenderer in my minigame because of how our window system were made. So I had to find other solutions.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/teamwork.jpg" alt="Teamwork">
+                    <div class="skill-info"> Teamwork <br>
+                        Like always in group projects. I also learned new code stuff from other programmer's style of writing code.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/bug.png" alt="Bug tracking/fixing">
+                    <div class="skill-info"> Bug tracking/fixing <br>
+                        We got our main features ready a lot before deadline so we had a lot of time for bug tracking and fixing.</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-game="redmilk">
         <h2>Red Milk</h2>
         <div class="card-content">
             
             <!-- Karuselli -->
-            <div class="carousel" id="carousel">
-                <button class="prev" id="prevEdge">&#10094;</button>
+            <div class="carousel">
+                <button class="prev">&#10094;</button>
 
                 <!-- Iso media-säiliö (kuva tai video) -->
-                <div id="mainMediaContainer">
+                <div class="mainMediaContainer">
                     <!-- JS täyttää tämän kuvan tai videon mukaan -->
                 </div>
 
-                <button class="next" id="nextEdge">&#10095;</button>
+                <button class="next">&#10095;</button>
 
                 <!-- Thumbnailit (vain kuville) -->
-                <div class="thumb-strip" id="thumbs"></div>
+                <div class="thumb-strip"></div>
             </div>
             
             <!-- Pelin kuvaus -->
@@ -101,34 +142,62 @@
                 <!-- Alempi boxi normaalina tekstinä -->
                 <div class="game-description lower-box">
                     <p>
-                        Cyberlance is a cyberpunk -themed ambulance driving multitasking game. You drive the ambulance, pick-up patients and take them to hospital. While driving you can play minigames to have more time to take them hospital.
+                        Red Milk is a horror game made by Unreal Engine 5. You wake up in the barn and you have to find your way out without getting caught by an evil antagonist.
                     </p>
                 </div>
                 <!-- Download button -->
-                <a href="https://example.com/download" target="_blank">
+                <a href="https://trauma-group.itch.io/red-milk" target="_blank">
                     <button class="download-btn">Download</button>
                 </a>
+
+                <div class="game-skills">
+                    <div class="skill">
+                    <img src="images/icons/ue.png" alt="Unreal Engine">
+                    <div class="skill-info">Unreal Engine <br>
+                        Unreal Engine was still relatively new engine for me and our team. Most of the time went by learning it but now I feel much more confident with UE.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/ai.jpg" alt="NPC Artificial Intelligence">
+                    <div class="skill-info"> NPC Artificial Intelligence <br>
+                        I spesifically wanted to do AI because I was interested in it and wanted to learn how to do it. I learned much different things about it and I feel this will help me with AI in Unity too.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/ue.png" alt="Blueprint scripting">
+                    <div class="skill-info"> Blueprint scripting <br>
+                        Game is completely made by blueprints.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/github.png" alt="Github Branches">
+                    <div class="skill-info"> Github Branches <br>
+                        This project was first time for me using branches in git. That was a great thing to learn.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/teamwork.jpg" alt="Teamwork">
+                    <div class="skill-info"> Teamwork <br>
+                        Like always when you work with a team, teamwork is much needed skill and it gets better always when working in teams.</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-game="brews">
         <h2>Brews & Brawls</h2>
         <div class="card-content">
             
             <!-- Karuselli -->
-            <div class="carousel" id="carousel">
-                <button class="prev" id="prevEdge">&#10094;</button>
+            <div class="carousel">
+                <button class="prev">&#10094;</button>
 
                 <!-- Iso media-säiliö (kuva tai video) -->
-                <div id="mainMediaContainer">
+                <div class="mainMediaContainer">
                     <!-- JS täyttää tämän kuvan tai videon mukaan -->
                 </div>
 
-                <button class="next" id="nextEdge">&#10095;</button>
+                <button class="next">&#10095;</button>
 
                 <!-- Thumbnailit (vain kuville) -->
-                <div class="thumb-strip" id="thumbs"></div>
+                <div class="thumb-strip"></div>
             </div>
             
             <!-- Pelin kuvaus -->
@@ -144,34 +213,62 @@
                 <!-- Alempi boxi normaalina tekstinä -->
                 <div class="game-description lower-box">
                     <p>
-                        Cyberlance is a cyberpunk -themed ambulance driving multitasking game. You drive the ambulance, pick-up patients and take them to hospital. While driving you can play minigames to have more time to take them hospital.
+                        Brews & Brawls is a virtual reality game made in Unreal Engine. As a bartender, your job is to serve for goblins. You can also throw objects and punch goblins.                             
                     </p>
                 </div>
-                <!-- Download button -->
-                <a href="https://example.com/download" target="_blank">
-                    <button class="download-btn">Download</button>
-                </a>
+
+                <div class="game-skills">
+                    <div class="skill">
+                    <img src="images/icons/ue.png" alt="Unreal Engine">
+                    <div class="skill-info">Unreal Engine <br>
+                    Project was my first with Unreal Engine and jumping immediately to VR isn't really the easiest way to learn a new engine.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/vr.jpg" alt="Virtual Reality">
+                    <div class="skill-info">Virtual Reality <br>
+                    It was my first VR game (and last so far). It was a great learning opportunity. Maybe a new engine made learning a little slower.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/ue.png" alt="Blueprint scripting">
+                    <div class="skill-info">Blueprint scripting <br>
+                    Game is made completely by blueprints.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/info.jpg" alt="Searching new information">
+                    <div class="skill-info">Searching for new information <br>
+                    While working with new engine and new technology. There is almost more learning than doing and most of the time the challenge is the technology, not necessarily the problem you are solving.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/teamwork.jpg" alt="Teamwork">
+                    <div class="skill-info">Teamwork <br>
+                    Every team project teaches more teamwork and teamwork is always needed while working in teams.</div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/mess.png" alt="Unreal's documentation is a mess">
+                    <div class="skill-info">Unreal's documentation is a mess</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="game-card">
+    <div class="game-card" data-game="ranger">
         <h2>Ranger's Reserve</h2>
         <div class="card-content">
             
             <!-- Karuselli -->
-            <div class="carousel" id="carousel">
-                <button class="prev" id="prevEdge">&#10094;</button>
+            <div class="carousel">
+                <button class="prev">&#10094;</button>
 
                 <!-- Iso media-säiliö (kuva tai video) -->
-                <div id="mainMediaContainer">
+                <div class="mainMediaContainer">
                     <!-- JS täyttää tämän kuvan tai videon mukaan -->
                 </div>
 
-                <button class="next" id="nextEdge">&#10095;</button>
+                <button class="next">&#10095;</button>
 
                 <!-- Thumbnailit (vain kuville) -->
-                <div class="thumb-strip" id="thumbs"></div>
+                <div class="thumb-strip"></div>
             </div>
             
             <!-- Pelin kuvaus -->
@@ -187,18 +284,49 @@
                 <!-- Alempi boxi normaalina tekstinä -->
                 <div class="game-description lower-box">
                     <p>
-                        Cyberlance is a cyberpunk -themed ambulance driving multitasking game. You drive the ambulance, pick-up patients and take them to hospital. While driving you can play minigames to have more time to take them hospital.
+                        Ranger's Reserve is a zoo themed city builder game made by Unity for Android mobile devices. In this game player buys habitats and animals to the habitats. By feeding animals they can level up and generate more gold for player.
                     </p>
                 </div>
                 <!-- Download button -->
-                <a href="https://example.com/download" target="_blank">
+                <a href="https://turnipcasserole.itch.io/rangers-reserve1" target="_blank">
                     <button class="download-btn">Download</button>
                 </a>
+
+                <div class="game-skills">
+                    <div class="skill">
+                    <img src="images/icons/unity.png" alt="Unity">
+                    <div class="skill-info">Unity <br>
+                        This game is made by Unity.
+                    </div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/Cs.png" alt="C#">
+                    <div class="skill-info">C# <br>
+                        This game is scripted with C#.
+                    </div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/android.png" alt="Mobile (Android)">
+                    <div class="skill-info">Mobile (Android) <br>
+                        Game is my first mobile game. Spesifically it's made for Android.
+                    </div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/Cs.png" alt="Dictionaries">
+                    <div class="skill-info">Dictionaries <br>
+                        While working with inventory systems, I found out dictionaries and learned when and how to use those.
+                    </div>
+                    </div>
+                    <div class="skill">
+                    <img src="images/icons/teamwork.jpg" alt="Teamwork">
+                    <div class="skill-info">Teamwork</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="header-background">
+    <div class="header-background" id="skills">
     <h2>Skills</h2>
     </div>
 
@@ -293,35 +421,7 @@
         </div>
     </section>
 
-        <!-- Game Development Card -->
-    <section class="card">
-        <h2>Soft Skills (TBD)</h2>
-        <div class="skills-grid">
-            <div class="skill">
-            <img src="images/icons/android.png" alt="Android">
-            <div class="skill-info">
-                Mobile (Android)<br>
-                Experienced since 2020, multiple published projects.
-            </div>
-            </div>
-            <div class="skill">
-            <img src="images/icons/vr.jpg" alt="Virtual Reality">
-            <div class="skill-info">
-                Virtual Reality<br>
-                VR and prototyping focus.
-            </div>
-            </div>
-            <div class="skill">
-            <img src="images/icons/github.png" alt="Github">
-            <div class="skill-info">
-                Github<br>
-                VR and prototyping focus.
-            </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="header-background">
+    <div class="header-background" id="contacts">
         <h2>Contacts</h2>
         </div>
 
@@ -338,11 +438,11 @@
             <div class="contact-info">
             <p>
                 <strong>Email:</strong> 
-                <a href="jere.pontynen@gmail.com">jere.pontynen@example.com</a>
+                <a href="pontynenjere@gmail.com" target="_blank">pontynenjere@gmail.com</a>
             </p>
             <p>
                 <strong>CV:</strong> 
-                <a href="files/cv.pdf" target="_blank">Download CV</a>
+                <a href="files/cv.pdf" target="_blank">CV -Coming soon-</a>
             </p>
             <p>
                 <strong>LinkedIn:</strong> 

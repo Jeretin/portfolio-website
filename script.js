@@ -1,93 +1,137 @@
-// Media-lista (kuvat ja videot)
-const media = [
-  { type: 'image', src: 'images/cyberlance/cyberlance0.png', alt:'Thumbnail' },
-  { type: 'video', src: 'images/cyberlance/videos/cyberlancevideo1.mp4', alt: 'Gameplay video'},
-  { type: 'video', src: 'images/cyberlance/videos/cyberlancevideo2.mp4', alt: 'Settings UI'},
-  { type: 'image', src: 'images/cyberlance/cyberlance1.png', alt:'Scoreview' },
-  { type: 'image', src: 'images/cyberlance/cyberlance2.png', alt:'Connect wires minigame' },
-  { type: 'image', src: 'images/cyberlance/cyberlance3.png', alt:'Patient data' },
-  { type: 'image', src: 'images/cyberlance/cyberlance4.png', alt:'Message window' },
-  { type: 'image', src: 'images/cyberlance/cyberlance5.png', alt:'Game length settings' }
-];
+// ===== MEDIA-AINEISTOT =====
+const media = {
+  cyberlance: [
+    { type: 'image', src: 'images/cyberlance/cyberlance0.png', alt:'Thumbnail' },
+    { type: 'video', src: 'images/cyberlance/videos/cyberlancevideo1.mp4', alt: 'Gameplay video'},
+    { type: 'video', src: 'images/cyberlance/videos/cyberlancevideo2.mp4', alt: 'Settings UI'},
+    { type: 'image', src: 'images/cyberlance/cyberlance1.png', alt:'Scoreview' },
+    { type: 'image', src: 'images/cyberlance/cyberlance2.png', alt:'Connect wires minigame' },
+    { type: 'image', src: 'images/cyberlance/cyberlance3.png', alt:'Patient data' },
+    { type: 'image', src: 'images/cyberlance/cyberlance4.png', alt:'Message window' },
+    { type: 'image', src: 'images/cyberlance/cyberlance5.png', alt:'Game length settings' }
+  ],
 
-const mainContainer = document.getElementById('mainMediaContainer'); // iso media-alue
-const thumbsCont = document.getElementById('thumbs');
-let index = 0;
+  redmilk: [
+    // Lisää myöhemmin Redmilk-kuvat ja videot tänne
+    { type: 'image', src: 'images/redmilk/Red_Milk.png', alt:'RedMilk logo'},
+    { type: 'video', src: 'images/redmilk/redmilk_vid1.mp4', alt: 'Number lock'},
+    { type: 'video', src: 'images/redmilk/redmilk_vid2.mp4', alt: 'AI NPC'},
+    { type: 'video', src: 'images/redmilk/redmilk_vid3.mp4', alt: 'Settings'}
+  ],
 
-// Luo pikkukuvat (vain kuville)
-media.forEach((it, i) => {
-  if(it.type === 'image') { // thumbnail vain kuville
-    const t = document.createElement('div');
-    t.className = 'thumb';
-    t.title = 'Näytä media ' + (i+1);
-    t.setAttribute('tabindex', 0);
-    t.innerHTML = `<img src="${it.src}" alt="${it.alt} thumb">`;
-    t.addEventListener('click', ()=> setMedia(i));
-    t.addEventListener('keydown', (e) => { if(e.key==='Enter' || e.key===' ') setMedia(i); });
-    thumbsCont.appendChild(t);
-  }
-});
+  brews: [
+    // Lisää myöhemmin Brews-projektin kuvat ja videot tänne
+    { type: 'image', src: 'images/brewsbrawls/brewsposter.png', alt: 'Brews & Brawls Poster'},
+    { type: 'video', src: 'images/brewsbrawls/brews_vid1.mp4', alt: 'Gameplayvideo'}
+  ],
 
-// Päivitä iso media (kuva tai video)
-function setMedia(i){
-  index = (i + media.length) % media.length;
-  mainContainer.innerHTML = ''; // tyhjennä edellinen media
+  ranger: [
+    // Lisää myöhemmin Rangerin kuvat ja videot tänne
+    { type: 'image', src: 'images/rangersreserve/Logo.png', alt: 'Rangers Reserve logo'},
+    { type: 'image', src: 'images/rangersreserve/ranger1.jpeg', alt: 'Environment'},
+    { type: 'image', src: 'images/rangersreserve/ranger2.jpeg', alt: 'Animal'}
+  ]
+};
 
-  const item = media[index];
 
-  if(item.type === 'image'){
-    const img = document.createElement('img');
-    img.src = item.src;
-    img.alt = item.alt;
-    img.addEventListener('dragstart', e => e.preventDefault()); // estä drag
-    mainContainer.appendChild(img);
-  } else if(item.type === 'video'){
-    const vid = document.createElement('video');
-    vid.src = item.src.endsWith('.mp4') || item.src.endsWith('.webm') ? item.src : item.src + '.mp4'; // lisää .mp4 jos puuttuu
-    vid.autoplay = true;
-    vid.loop = true;
-    vid.muted = true;
-    vid.controls = true;
-    mainContainer.appendChild(vid);
+// ===== KARUSELLILOGIIKKA =====
+document.querySelectorAll('.game-card').forEach(card => {
+  const key = card.dataset.game; // esim. "cyberlance"
+  const mediaSet = media[key];
+
+  if (!mediaSet || mediaSet.length === 0) {
+    console.warn(`Ei mediaa pelille: ${key}`);
+    return;
   }
 
-  // Korostus thumbnailille
-  Array.from(thumbsCont.children).forEach((c, j) => {
-    c.style.boxShadow = j === index ? '0 4px 14px rgba(31,111,235,0.25)' : '';
+  const main = card.querySelector('.mainMediaContainer');
+  const thumbs = card.querySelector('.thumb-strip');
+  const prev = card.querySelector('.prev');
+  const next = card.querySelector('.next');
+  let index = 0;
+
+  // Luo thumbnailit vain kuville
+  mediaSet.forEach((item, i) => {
+    if (item.type === 'image') {
+      const thumb = document.createElement('img');
+      thumb.src = item.src;
+      thumb.alt = item.alt;
+      thumb.classList.add('thumb');
+      thumb.addEventListener('click', () => setMedia(i));
+      thumbs.appendChild(thumb);
+    }
   });
-}
 
-// Aloita ensimmäisestä mediasta
-setMedia(0);
+  // Median näyttäminen (kuva tai video)
+  function setMedia(i) {
+    index = (i + mediaSet.length) % mediaSet.length;
+    main.innerHTML = ''; // tyhjennetään edellinen sisältö
 
-// Klikkaukset
-document.getElementById('prevEdge').addEventListener('click', ()=> setMedia(index-1));
-document.getElementById('nextEdge').addEventListener('click', ()=> setMedia(index+1));
-document.getElementById('prevBtn')?.addEventListener('click', (e)=> { e.stopPropagation(); setMedia(index-1); });
-document.getElementById('nextBtn')?.addEventListener('click', (e)=> { e.stopPropagation(); setMedia(index+1); });
+    const item = mediaSet[index];
 
-// Näppäimistö
-const carousel = document.getElementById('carousel');
-carousel.addEventListener('keydown', (e)=> {
-  if(e.key === 'ArrowLeft') setMedia(index-1);
-  if(e.key === 'ArrowRight') setMedia(index+1);
-});
+    if (item.type === 'image') {
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.alt;
+      img.draggable = false;
+      main.appendChild(img);
+    } 
+    else if (item.type === 'video') {
+      const vid = document.createElement('video');
+      vid.src = item.src;
+      vid.autoplay = true;
+      vid.loop = true;
+      vid.muted = true;
+      vid.controls = true;
+      main.appendChild(vid);
+    }
 
-// Swipe-tuki mobiilille
-let startX = null;
-carousel.addEventListener('touchstart', (e) => { startX = e.changedTouches[0].clientX; }, {passive:true});
-carousel.addEventListener('touchend', (e) => {
-  if(startX === null) return;
-  const dx = e.changedTouches[0].clientX - startX;
-  if(Math.abs(dx) > 40){
-    if(dx > 0) setMedia(index-1); else setMedia(index+1);
+    // Korostetaan aktiivinen thumb
+    thumbs.querySelectorAll('img').forEach((t, j) => {
+      t.classList.toggle('active', j === index);
+    });
   }
-  startX = null;
+
+  // Nappien toiminta
+  prev.addEventListener('click', () => setMedia(index - 1));
+  next.addEventListener('click', () => setMedia(index + 1));
+
+  // Nuolinäppäimet
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') setMedia(index - 1);
+    if (e.key === 'ArrowRight') setMedia(index + 1);
+  });
+
+  // Kosketus (mobiili) – pyyhkäisy
+  let startX = null;
+  card.addEventListener('touchstart', (e) => {
+    startX = e.changedTouches[0].clientX;
+  }, { passive: true });
+
+  card.addEventListener('touchend', (e) => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) {
+      if (dx > 0) setMedia(index - 1);
+      else setMedia(index + 1);
+    }
+    startX = null;
+  });
+
+  // Aloitetaan ensimmäisestä mediasta
+  setMedia(0);
 });
 
-document.getElementById('downloadBtn').addEventListener('click', () => {
-    // Vaihda URL haluamaasi sivuun
-    window.open('https://leka45km.itch.io/cyberlance', '_blank');
+
+// ===== DOWNLOAD-NAPPI =====
+document.querySelectorAll('.download-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const card = e.target.closest('.game-card');
+    const key = card?.dataset.game;
+    if (key === 'cyberlance') {
+      window.open('https://leka45km.itch.io/cyberlance', '_blank');
+    }
+    // Lisää muut linkit jos tarpeen:
+    // else if (key === 'redmilk') { window.open('https://...', '_blank'); }
+  });
 });
-
-

@@ -204,7 +204,7 @@ button:hover {
 }
 
 /* Iso media-säiliö (kuva tai video) */
-#mainMediaContainer {
+.mainMediaContainer {
     width: 100%;
     height: 300px;
     border-radius: 10px;
@@ -217,8 +217,8 @@ button:hover {
 }
 
 /* Kuva ja video täyttävät säiliön */
-#mainMediaContainer img,
-#mainMediaContainer video {
+.mainMediaContainer img,
+.mainMediaContainer video {
     width: 100%;
     height: 100%;
     object-fit: contain; /* koko sisältö näkyy */
@@ -276,8 +276,10 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center; /* Keskittää ikonit vaakasuunnassa */
   margin-top: 15px;
 }
+
 
 .skill {
   position: relative;
@@ -360,4 +362,76 @@ button:hover {
   vertical-align: middle;
 }
 
+/* --- Game cardin taitoikonit alareunassa --- */
+.game-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 15px;
+}
 
+.game-skills .skill {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.game-skills .skill img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.game-skills .skill:hover img {
+  transform: scale(1.1);
+}
+
+.game-skills .skill-info {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30,30,30,0.9);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  font-size: 0.8rem;
+}
+
+.game-skills .skill:hover .skill-info {
+  opacity: 1;
+}
+
+.header-buttons a {
+    flex: 1;
+    padding: 15px 0;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color-text-strong);
+    background-color: var(--color-primary-lighter);
+    text-align: center;
+    display: inline-block;
+    transition: background 0.3s;
+}
+
+.header-buttons a:hover {
+    background: var(--color-accent);
+    color: var(--color-background);
+}
+
+html {
+    scroll-behavior: smooth;
+}
